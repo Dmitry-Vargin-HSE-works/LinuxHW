@@ -1,6 +1,6 @@
 #!bin/bash
 
-#регулярки
+clear
 
 sum() {
 	local a=$1;	local b=$2

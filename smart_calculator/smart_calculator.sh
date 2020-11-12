@@ -1,24 +1,25 @@
 #!bin/bash
 
-# max_errors=1
+max_errors=1
 
 # import
-source ./error_correction.sh
+# source ./error_correction.sh
 source ./operations.sh
+source ./algorithm.sh
 
 clear
 
 echo "Привет, это умный калькулятор, который может понять числа введенные с ошибкой."
 echo "Пожалуйста, введите первое число:"
-read num1; num1=$(whatIs $num1)
+read num1; num1=$(whatIsIt $num1 $max_errors)
 echo "Введите второе число:"
-read num2; num2=$(whatIs $num2)
+read num2; num2=$(whatIsIt $num2 $max_errors)
 echo "Введите, какую операцию вы хотите применить:"
 echo "(\"п\" плюс, \"м\" минус, \"у\" умножить, \"р\" разделить):"
 read act
 
-if [[ $"num1" = "-1" || "$num2" = "-1" ]]; then
-	echo "Wrong input!"
+if [[ $act = "р" && $num2 = 0 ]]; then
+	echo "ОШИБКА: деление на 0"
 	exit 1
 fi
 

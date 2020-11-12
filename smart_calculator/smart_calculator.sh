@@ -14,7 +14,7 @@ read num1; num1=$(whatIs $num1)
 echo "Введите второе число:"
 read num2; num2=$(whatIs $num2)
 echo "Введите, какую операцию вы хотите применить:"
-echo "(\"п\" плюс, \"м\" минус, \"у\" умножить, \"р\" разделить):"
+echo "(\"+\" плюс, \"-\" минус, \"*\" умножить, \"/\" разделить):"
 read act
 
 if [[ $"num1" = "-1" || "$num2" = "-1" ]]; then
@@ -22,16 +22,21 @@ if [[ $"num1" = "-1" || "$num2" = "-1" ]]; then
 	exit 1
 fi
 
-if [[ "$act" = 'п' ]]; then
+if [[ "$num2" = "0" && "${act:0:1}" = "/" ]]; then
+	echo "0 division!"
+	exit 2
+fi
+
+if [[ "${act:0:1}" = "+" ]]; then
 	result=$(sum num1 num2)	
 	act="плюс"
-elif [[ "$act" = 'м' ]]; then
+elif [[ "${act:0:1}" = "-" ]]; then
 	result=$(subtraction num1 num2)
 	act="минус"
-elif [[ "$act" = 'у' ]]; then
+elif [[ "${act:0:1}" = "*" ]]; then
 	result=$(multiplication num1 num2)
 	act="умножить на"
-elif [[ "$act" = 'р' ]]; then
+elif [[ "${act:0:1}" = "/" ]]; then
 	result=$(division num1 num2)
 	act="разделить на"
 else

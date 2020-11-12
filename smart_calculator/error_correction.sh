@@ -1,7 +1,7 @@
 #!bin/bash
 
 numbers=(ноль один два три четыре пять шесть семь восемь девять)
-#			4	4	3	3	6		4	5		4	6		6
+
 # echo ${numbers[*]} 	- print all elements
 # echo ${#numbers[*]} 	- print length
 
